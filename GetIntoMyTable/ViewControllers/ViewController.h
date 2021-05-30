@@ -7,8 +7,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface FeedViewController : UIViewController
 
+@property (weak) IBOutlet UITableView *feedTable;
 
 @end
 
