@@ -18,20 +18,6 @@
 
 @implementation ArticleCell
 
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [UILabel new];
-    }
-    return _titleLabel;
-}
-
-- (UILabel *)bodyLabel {
-    if (!_bodyLabel) {
-        _bodyLabel = [UILabel new];
-    }
-    return _bodyLabel;
-}
-
 - (UIImageView *)articleImageView {
     if (!_articleImageView) {
         _articleImageView = [UIImageView new];
@@ -54,7 +40,8 @@
      2. title underneath (rendering at most 2 lines of the title with the rest ellipsed if necessary
      
      */
-    
+    self.titleLabel = [UILabel new];
+    self.bodyLabel = [UILabel new];
     self.titleLabel.attributedText = [[Article cleanText:article.title]
                                       withFont:[UIFont boldSystemFontOfSize:26]];
     self.bodyLabel.attributedText = [[[[Article cleanText:article.summaryHTML]

@@ -125,9 +125,14 @@
         self.feedTable.userInteractionEnabled = NO;
         [self.activityIndicator startAnimating];
     } else {
-        self.feedTable.alpha = 1;
-        self.feedTable.userInteractionEnabled = YES;
-        [self.activityIndicator stopAnimating];
+        __weak typeof(self) weakSelf = self;
+        dispatch_after(2, dispatch_get_main_queue(), ^{
+            weakSelf.feedTable.alpha = 1;
+            weakSelf.feedTable.userInteractionEnabled = YES;
+            [weakSelf.activityIndicator stopAnimating];
+            [weakSelf.activityIndicator removeFromSuperview];
+        });
+        
     }
 }
 
