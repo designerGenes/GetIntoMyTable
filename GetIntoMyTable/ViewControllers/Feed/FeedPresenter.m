@@ -10,12 +10,14 @@
 #import "Feed.h"
 #import "ArticleCell.h"
 #import "Article.h"
+#import "AppDelegate.h"
 
 @interface FeedPresenter () 
 
 @property (nonatomic, weak) id<FeedView> view;
 @property (nonatomic, strong) HTTPHandler *httpHandler;
 @property (nonatomic, strong) Feed *lastKnownFeed;
+@property (nonatomic, assign) BOOL lastScrollWasUp;
 
 @end
 
@@ -63,7 +65,6 @@
     ArticleCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     BOOL isPrimary = indexPath.row < 1;
     [cell configureWithArticle:self.lastKnownFeed.items[indexPath.row] isPrimary:isPrimary];
-    cell.backgroundColor = [cell backgroundGrayWithDegree:(indexPath.row + 2) % 2];
     return cell;
 }
 
@@ -74,6 +75,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    let divisor = AppDelegate.sharedInstance.deviceIsIpad ? 3 : 2;
+    return tableView.frame.size.height / divisor;
+}
 
 
 @end

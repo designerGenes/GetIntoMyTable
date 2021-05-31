@@ -24,4 +24,13 @@
     ]];
 }
 
+- (void)centerPerfectlyInView:(UIView *)container {
+    [container addSubview:self];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [self.centerYAnchor constraintEqualToAnchor:container.centerYAnchor],
+        [self.centerXAnchor constraintEqualToAnchor:container.centerXAnchor],
+    ]];
+}
+
 @end

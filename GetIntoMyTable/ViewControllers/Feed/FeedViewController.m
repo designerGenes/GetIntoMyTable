@@ -11,7 +11,7 @@
 #import "Article.h"
 #import "Feed.h"
 #import "UIView+Constrain.h"
-#import "NSAttributedString+AddAttributes.h"
+
 @import SafariServices;
 
 
@@ -46,7 +46,7 @@
         [_feedTable registerClass:ArticleCell.class forCellReuseIdentifier:NSStringFromClass(ArticleCell.class)];
         _feedTable.separatorStyle = UITableViewCellSeparatorStyleNone;
         _feedTable.dataSource = self.presenter;
-       _feedTable.delegate = self.presenter;
+        _feedTable.delegate = self.presenter;
     }
     
     return _feedTable;
@@ -57,20 +57,10 @@
         _reloadButton = [UIButton new];
         [_reloadButton setImage:[UIImage systemImageNamed:@"arrow.clockwise"] forState:UIControlStateNormal];
         [_reloadButton addTarget:self action:@selector(tappedReload:) forControlEvents:UIControlEventTouchUpInside];
-        _reloadButton.tintColor = UIColor.systemYellowColor;
+        _reloadButton.tintColor = UIColor.darkGrayColor;
         }
     
     return _reloadButton;
-}
-
-- (UILabel *)feedTitleLabel {
-    if (!_feedTitleLabel) {
-        _feedTitleLabel = [UILabel new];
-        _feedTitleLabel.font = [UIFont boldSystemFontOfSize:18];
-        _feedTitleLabel.textColor = UIColor.systemYellowColor;
-        _feedTitleLabel.textAlignment = NSTextAlignmentLeft;
-    }
-    return _feedTitleLabel;
 }
 
 - (void)installConstraints {
@@ -80,11 +70,11 @@
     }
     UILayoutGuide *guide = self.view.safeAreaLayoutGuide;
     [NSLayoutConstraint activateConstraints:@[
-        [self.feedTable.bottomAnchor constraintEqualToAnchor:guide.bottomAnchor],
+        [self.feedTable.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
         [self.feedTable.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [self.feedTable.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
         [self.feedTable.topAnchor constraintEqualToAnchor:self.feedTitleLabel.bottomAnchor constant:24],
-        [self.feedTitleLabel.topAnchor constraintEqualToAnchor:guide.topAnchor constant:8],
+        [self.feedTitleLabel.topAnchor constraintEqualToAnchor:guide.topAnchor constant:16],
         [self.feedTitleLabel.leadingAnchor constraintEqualToAnchor:guide.leadingAnchor constant:16],
         [self.feedTitleLabel.trailingAnchor constraintLessThanOrEqualToAnchor:self.reloadButton.leadingAnchor constant:16],
         [self.reloadButton.trailingAnchor constraintEqualToAnchor:guide.trailingAnchor constant:-16],
@@ -94,22 +84,30 @@
 
 #pragma MARK - lifecycle
 - (void)viewDidLoad {
+    self.feedTitleLabel = [UILabel new];
     self.navigationController.navigationBarHidden = YES;
     [super viewDidLoad];
     [self installConstraints];
-    self.view.backgroundColor = UIColor.systemGray2Color;
+    self.view.backgroundColor = UIColor.whiteColor;
     
     [self.presenter viewDidBecomeReady:self];
     
 }
 
 #pragma MARK - FeedView
+- (void)setTitleLabelText:(NSString *)titleLabelText {
+    self.feedTitleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightRegular];
+    self.feedTitleLabel.text = titleLabelText; // TMP!
+}
+
 - (void)invalidateData:(Feed *)newData {
     [self.feedTable reloadData];
-    NSMutableAttributedString *titleText = [[[[NSMutableAttributedString alloc] initWithAttributedString:[Article cleanText:newData.title]]
-                                             withFont:[UIFont boldSystemFontOfSize:18]]
-                                            withPrimaryColor:UIColor.blackColor];
-    self.feedTitleLabel.attributedText = titleText;
+    
+    
+    
+    self.feedTitleLabel.attributedText = [[newData.title.mutableAttributedString
+                                            withFont:[UIFont boldSystemFontOfSize:36]]
+                                           withPrimaryColor:UIColor.blackColor];
 }
 
 - (void)navigateToBrowserWithURL:(NSURL *)url {

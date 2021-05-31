@@ -7,9 +7,6 @@
 
 #import "ArticleCell.h"
 #import "Article.h"
-#import "UIImageView+Download.h"
-#import "NSAttributedString+AddAttributes.h"
-#import "UIView+Constrain.h"
 
 @interface ArticleCell ()
 
@@ -38,7 +35,7 @@
 - (UIImageView *)articleImageView {
     if (!_articleImageView) {
         _articleImageView = [UIImageView new];
-        _articleImageView.contentMode = UIViewContentModeScaleToFill;
+        _articleImageView.contentMode = UIViewContentModeScaleAspectFill;
         _articleImageView.layer.masksToBounds = YES;
     }
     
@@ -58,30 +55,20 @@
      
      */
     
-    self.titleLabel.attributedText = [[Article cleanText:article.title] withFont:[UIFont boldSystemFontOfSize:16]];
-    self.bodyLabel.attributedText = [[Article cleanText:article.summaryHTML] withFont:[UIFont systemFontOfSize:14]];
+    self.titleLabel.attributedText = [[Article cleanText:article.title]
+                                      withFont:[UIFont boldSystemFontOfSize:26]];
+    self.bodyLabel.attributedText = [[[[Article cleanText:article.summaryHTML]
+                                        withFont:[UIFont boldSystemFontOfSize:18]]
+                                       withPrimaryColor:UIColor.blackColor]
+                                      withStrokeColor:UIColor.whiteColor];
+    self.bodyLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.titleLabel.numberOfLines = isPrimary ? 1 : 2;
     self.bodyLabel.numberOfLines = 2;
     NSURL *imageURL = [NSURL URLWithString:article.featuredImageUrl];
     [self.articleImageView downloadImageAtURL:imageURL];
-    self.articleImageView.alpha = 0.5;
-    
+    self.articleImageView.alpha = 0.6;
     [self.contentView sendSubviewToBack:self.articleImageView];
-}
-
-- (UIColor *)backgroundGrayWithDegree:(NSUInteger)grayDegree {
-    NSDictionary *bgGrays = @{
-        @0: UIColor.systemGrayColor,
-        @1: UIColor.systemGray2Color,
-        @2: UIColor.systemGray3Color,
-        @3: UIColor.systemGray4Color,
-        @4: UIColor.systemGray5Color,
-        @5: UIColor.systemGray6Color,
-    };
-    if (grayDegree < bgGrays.allKeys.count) {
-        return bgGrays[@(grayDegree)];
-    }
-    return UIColor.grayColor;
 }
 
 - (void)prepareForReuse {
@@ -101,13 +88,13 @@
     [self.articleImageView fixToAllSidesInView:self.contentView obeyingSafeArea:NO];
     [self.contentView sendSubviewToBack:self.articleImageView];
     [NSLayoutConstraint activateConstraints:@[
-        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:8],
-        [self.titleLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:4],
-        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:8],
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:16],
+        [self.titleLabel.bottomAnchor constraintEqualToAnchor:self.contentView.centerYAnchor constant:-8],
+        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8],
         [self.bodyLabel.leadingAnchor constraintEqualToAnchor:self.titleLabel.leadingAnchor],
-        [self.bodyLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:4],
+        [self.bodyLabel.topAnchor constraintEqualToAnchor:self.centerYAnchor],
         [self.bodyLabel.bottomAnchor constraintLessThanOrEqualToAnchor:self.contentView.bottomAnchor constant:16],
-        [self.bodyLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:8],
+        [self.bodyLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8],
         [self.articleImageView.heightAnchor constraintGreaterThanOrEqualToConstant:320],
     ]];
 }

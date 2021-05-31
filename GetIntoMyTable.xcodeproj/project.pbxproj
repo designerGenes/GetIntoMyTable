@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A845A9CF2662DB3300A57D7A /* UIView+Constrain.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9CE2662DB3300A57D7A /* UIView+Constrain.m */; };
 		A845A9D22662F35E00A57D7A /* NSAttributedString+AddAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9D12662F35E00A57D7A /* NSAttributedString+AddAttributes.m */; };
+		A845A9D526637F5700A57D7A /* Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A845A9D426637F5700A57D7A /* Instructions.rtf */; };
+		A845A9DA266385E700A57D7A /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9D9266385E700A57D7A /* NSString+Extension.m */; };
 		A8D09DE9266030AB00956B68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DE8266030AB00956B68 /* AppDelegate.m */; };
 		A8D09DEC266030AB00956B68 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DEB266030AB00956B68 /* SceneDelegate.m */; };
 		A8D09DEF266030AB00956B68 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DEE266030AB00956B68 /* FeedViewController.m */; };
@@ -28,6 +30,11 @@
 		A845A9CE2662DB3300A57D7A /* UIView+Constrain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Constrain.m"; sourceTree = "<group>"; };
 		A845A9D02662F35E00A57D7A /* NSAttributedString+AddAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+AddAttributes.h"; sourceTree = "<group>"; };
 		A845A9D12662F35E00A57D7A /* NSAttributedString+AddAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+AddAttributes.m"; sourceTree = "<group>"; };
+		A845A9D426637F5700A57D7A /* Instructions.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Instructions.rtf; sourceTree = SOURCE_ROOT; };
+		A845A9D8266385E700A57D7A /* NSString+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		A845A9D9266385E700A57D7A /* NSString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		A845A9DB266402A800A57D7A /* LetVar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LetVar.h; sourceTree = "<group>"; };
+		A845A9DC2664030800A57D7A /* GetIntoMyTable-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GetIntoMyTable-Prefix.pch"; sourceTree = "<group>"; };
 		A8D09DE4266030AB00956B68 /* GetIntoMyTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetIntoMyTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D09DE7266030AB00956B68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A8D09DE8266030AB00956B68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +71,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A845A9D326637F4700A57D7A /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A845A9D426637F5700A57D7A /* Instructions.rtf */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		A845A9D62663851B00A57D7A /* Macros */ = {
+			isa = PBXGroup;
+			children = (
+				A845A9DB266402A800A57D7A /* LetVar.h */,
+			);
+			path = Macros;
+			sourceTree = "<group>";
+		};
 		A8D09DDB266030AB00956B68 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +106,8 @@
 		A8D09DE6266030AB00956B68 /* GetIntoMyTable */ = {
 			isa = PBXGroup;
 			children = (
+				A845A9D62663851B00A57D7A /* Macros */,
+				A845A9D326637F4700A57D7A /* Assets */,
 				A8D09E062660314A00956B68 /* Extensions */,
 				A8D09E052660314400956B68 /* Models */,
 				A8D09E032660313100956B68 /* Views */,
@@ -92,6 +117,7 @@
 				A8D09DF3266030AC00956B68 /* Assets.xcassets */,
 				A8D09DF5266030AC00956B68 /* LaunchScreen.storyboard */,
 				A8D09DF8266030AC00956B68 /* Info.plist */,
+				A845A9DC2664030800A57D7A /* GetIntoMyTable-Prefix.pch */,
 				A8D09DF9266030AC00956B68 /* main.m */,
 			);
 			path = GetIntoMyTable;
@@ -160,6 +186,8 @@
 				A8D09E1A2661B0B800956B68 /* UIImageView+Download.m */,
 				A845A9CD2662DB3300A57D7A /* UIView+Constrain.h */,
 				A845A9D02662F35E00A57D7A /* NSAttributedString+AddAttributes.h */,
+				A845A9D8266385E700A57D7A /* NSString+Extension.h */,
+				A845A9D9266385E700A57D7A /* NSString+Extension.m */,
 				A845A9D12662F35E00A57D7A /* NSAttributedString+AddAttributes.m */,
 				A845A9CE2662DB3300A57D7A /* UIView+Constrain.m */,
 			);
@@ -235,6 +263,7 @@
 			files = (
 				A8D09DF7266030AC00956B68 /* LaunchScreen.storyboard in Resources */,
 				A8D09DF4266030AC00956B68 /* Assets.xcassets in Resources */,
+				A845A9D526637F5700A57D7A /* Instructions.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +280,7 @@
 				A8D09DE9266030AB00956B68 /* AppDelegate.m in Sources */,
 				A8D09E0F266031F700956B68 /* Feed.m in Sources */,
 				A8D09E18266039FA00956B68 /* FeedPresenter.m in Sources */,
+				A845A9DA266385E700A57D7A /* NSString+Extension.m in Sources */,
 				A8D09E0C266031AD00956B68 /* Article.m in Sources */,
 				A8D09E132660337800956B68 /* ArticleCell.m in Sources */,
 				A8D09DFA266030AC00956B68 /* main.m in Sources */,
@@ -393,6 +423,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5DYJ7634L5;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GetIntoMyTable/GetIntoMyTable-Prefix.pch";
 				INFOPLIST_FILE = GetIntoMyTable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -411,6 +442,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5DYJ7634L5;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/GetIntoMyTable/GetIntoMyTable-Prefix.pch";
 				INFOPLIST_FILE = GetIntoMyTable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

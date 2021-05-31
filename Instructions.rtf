@@ -1,0 +1,123 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 Times-Roman;\f2\fnil\fcharset0 LucidaGrande;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{circle\}}{\leveltext\leveltemplateid2\'01\uc0\u9702 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\margl1440\margr1440\vieww25360\viewh18300\viewkind0
+\deftab720
+\pard\pardeftab720\sl352\sa373\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a mobile application that can be displayed in all orientations. The application will do the following:\'a0
+\f1\fs24 \
+\pard\pardeftab720\sl352\sa373\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \uc0\u9679  Parse the RSS feed https://www.personalcapital.com/blog/feed/json and asynchronously load the contents of the feed. Display a loading indicator while the feed is loading as well as for each image.\'a0
+\f1\fs24 \
+
+\f2\fs29\fsmilli14667 \uc0\u9675 
+\f0  Each article is represented in an 
+\fs26\fsmilli13333 item 
+\fs29\fsmilli14667 node. Each article has an html encoded title represented in the 
+\fs26\fsmilli13333 title 
+\fs29\fsmilli14667 node, an image represented in the 
+\fs26\fsmilli13333 featured_image 
+\fs29\fsmilli14667 node, a quick html encoded summary represented in the 
+\fs26\fsmilli13333 summary 
+\fs29\fsmilli14667 node, a publish date represented in the 
+\fs26\fsmilli13333 date_published 
+\fs29\fsmilli14667 node, a link to the article represented in the 
+\fs26\fsmilli13333 url 
+\fs29\fsmilli14667 node, and the content of the article represented in the content_html node.\'a0
+\f1\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl352\partightenfactor0
+\ls1\ilvl0
+\f0\fs29\fsmilli14667 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9679  The main screen should display the title of the feed represented in the feed\'92s html encoded 
+\fs26\fsmilli13333 title 
+\fs29\fsmilli14667 node and display each article in a scrolling list that correctly utilizes the space of the device screen.\'a0
+\fs28 \uc0\u8232 \
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl352\partightenfactor0
+\ls1\ilvl1
+\fs29\fsmilli14667 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f0 	}
+\f2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9675 
+\f0  The first article should take prominence at the top and display the image, title on one line with the rest ellipsed if necessary, and the first two lines of the summary with the rest ellipsed if necessary.\'a0
+\fs28 \uc0\u8232 \
+\ls1\ilvl1
+\fs29\fsmilli14667 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f0 	}
+\f2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9675 
+\f0  Each article after should be displayed underneath the main article and represented by the image and title underneath (rendering at most 2 lines of the title with the rest ellipsed if necessary).\'a0
+\fs28 \uc0\u8232 \
+\ls1\ilvl1
+\fs29\fsmilli14667 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f0 	}
+\f2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9675 
+\f0  For handset, the articles should be in rows of 2.\'a0
+\fs28 \uc0\u8232 \
+\ls1\ilvl1
+\fs29\fsmilli14667 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f0 	}
+\f2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9675 
+\f0  For tablet, the articles should be in rows of 3.\'a0
+\fs28 \uc0\u8232 \
+\ls1\ilvl1
+\fs29\fsmilli14667 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f0 	}
+\f2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9675 
+\f0  HTML encoded content should be rendered correctly.\'a0
+\fs28 \uc0\u8232 \
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl352\sa373\partightenfactor0
+\ls1\ilvl1
+\fs29\fsmilli14667 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	
+\f2 \uc0\u9702 
+\f0 	}
+\f2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9675 
+\f0  The screen should contain a \'93refresh\'94 button in the upper right corner of the\'a0
+\fs28 \uc0\u8232 \
+\pard\pardeftab720\li1920\sl352\sa373\partightenfactor0
+
+\fs29\fsmilli14667 \cf2 navigation bar which will query the RSS feed and refresh the screen.\'a0
+\f1\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl352\sa373\partightenfactor0
+\ls2\ilvl0
+\f0\fs29\fsmilli14667 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9679  Selecting an article will render the content_html in an embedded webview on another\'a0
+\fs28 \uc0\u8232 \
+\pard\pardeftab720\li960\sl352\sa373\partightenfactor0
+
+\fs29\fsmilli14667 \cf2 screen with the title of the article displayed in the navigation bar.\'a0
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 Use this exercise to display your programming and aesthetic style. Please include any additional details that you believe may improve the user experience.\'a0
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 Please try to not use third party libraries and thoroughly comment the code. If completing for iPhone/iPad, use Objective-C without using Interface Builder or Storyboards. If completing for Android, use Java or Kotlin without using XML layouts or drawables.\'a0
+\f1\fs24 \
+
+\f0\fs29\fsmilli14667 Please provide the complete project on github.\uc0\u8232 Below is an example of the suggested layout on a handset.\'a0
+\f1\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0
+\f0\fs28 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u8232 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \
+}

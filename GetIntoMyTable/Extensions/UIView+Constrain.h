@@ -9,5 +9,6 @@
 
 @interface UIView (Constrain)
 - (void)fixToAllSidesInView:(UIView *)container obeyingSafeArea:(BOOL)obeySafeArea;
+- (void)centerPerfectlyInView:(UIView *)container;
 @end
 

@@ -19,6 +19,13 @@
     return YES;
 }
 
+- (BOOL)deviceIsIpad {
+    return UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad;
+}
+
++ (instancetype)sharedInstance {
+    return (AppDelegate *) UIApplication.sharedApplication.delegate;
+}
 
 #pragma mark - UISceneSession lifecycle
 

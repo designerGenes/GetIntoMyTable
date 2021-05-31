@@ -6,15 +6,22 @@
 //
 
 #import "UIImageView+Download.h"
+#import "UIView+Constrain.h"
 
 @implementation UIImageView (Download)
 
 - (void)downloadImageAtURL:(NSURL *)url {
+    UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView new];
+    [self.superview addSubview:activityIndicator];
+    [activityIndicator centerPerfectlyInView:self.superview];
+    [activityIndicator startAnimating];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [activityIndicator removeFromSuperview];
             UIImage *image = [UIImage imageWithData:data];
             if (data && !error && image) {
                 self.image = image;

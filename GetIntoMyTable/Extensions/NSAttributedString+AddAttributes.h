@@ -12,6 +12,7 @@
 
 - (NSAttributedString *)withFont:(UIFont *)font;
 - (NSAttributedString *)withPrimaryColor:(UIColor *)primaryColor;
+- (NSAttributedString *)withStrokeColor:(UIColor *)strokeColor;
+- (NSAttributedString *)withStrokeWidth:(CGFloat)strokeWidth;
 
 @end
-

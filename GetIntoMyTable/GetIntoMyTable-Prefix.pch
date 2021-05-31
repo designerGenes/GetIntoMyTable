@@ -1,0 +1,17 @@
+//
+//  GetIntoMyTable-Prefix.pch
+//  GetIntoMyTable
+//
+//  Created by Jaden Nation on 5/30/21.
+//
+
+#ifndef GetIntoMyTable_Prefix_pch
+#define GetIntoMyTable_Prefix_pch
+
+#import "UIImageView+Download.h"
+#import "UIView+Constrain.h"
+#import "NSAttributedString+AddAttributes.h"
+#import "NSString+Extension.h"
+#import "LetVar.h"
+
+#endif /* GetIntoMyTable_Prefix_pch */

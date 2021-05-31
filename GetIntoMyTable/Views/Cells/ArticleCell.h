@@ -11,7 +11,7 @@
 @interface ArticleCell : UITableViewCell
 
 - (void)configureWithArticle:(Article *)article isPrimary:(BOOL)isPrimary;
-- (UIColor *)backgroundGrayWithDegree:(NSUInteger)grayDegree;
+
 @end
 
 
