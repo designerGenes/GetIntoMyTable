@@ -11,6 +11,7 @@
 		A845A9D22662F35E00A57D7A /* NSAttributedString+AddAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9D12662F35E00A57D7A /* NSAttributedString+AddAttributes.m */; };
 		A845A9D526637F5700A57D7A /* Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A845A9D426637F5700A57D7A /* Instructions.rtf */; };
 		A845A9DA266385E700A57D7A /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9D9266385E700A57D7A /* NSString+Extension.m */; };
+		A845A9DF2667FACB00A57D7A /* CacheHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9DE2667FACB00A57D7A /* CacheHandler.m */; };
 		A8D09DE9266030AB00956B68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DE8266030AB00956B68 /* AppDelegate.m */; };
 		A8D09DEC266030AB00956B68 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DEB266030AB00956B68 /* SceneDelegate.m */; };
 		A8D09DEF266030AB00956B68 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DEE266030AB00956B68 /* FeedViewController.m */; };
@@ -35,6 +36,8 @@
 		A845A9D9266385E700A57D7A /* NSString+Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		A845A9DB266402A800A57D7A /* LetVar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LetVar.h; sourceTree = "<group>"; };
 		A845A9DC2664030800A57D7A /* GetIntoMyTable-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GetIntoMyTable-Prefix.pch"; sourceTree = "<group>"; };
+		A845A9DD2667FACB00A57D7A /* CacheHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheHandler.h; sourceTree = "<group>"; };
+		A845A9DE2667FACB00A57D7A /* CacheHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheHandler.m; sourceTree = "<group>"; };
 		A8D09DE4266030AB00956B68 /* GetIntoMyTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetIntoMyTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D09DE7266030AB00956B68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A8D09DE8266030AB00956B68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -106,12 +109,12 @@
 		A8D09DE6266030AB00956B68 /* GetIntoMyTable */ = {
 			isa = PBXGroup;
 			children = (
+				A8D09E022660312700956B68 /* Handlers */,
 				A845A9D62663851B00A57D7A /* Macros */,
 				A845A9D326637F4700A57D7A /* Assets */,
 				A8D09E062660314A00956B68 /* Extensions */,
 				A8D09E052660314400956B68 /* Models */,
 				A8D09E032660313100956B68 /* Views */,
-				A8D09E022660312700956B68 /* Handlers */,
 				A8D09E012660311D00956B68 /* AppDelegate */,
 				A8D09E00266030B500956B68 /* ViewControllers */,
 				A8D09DF3266030AC00956B68 /* Assets.xcassets */,
@@ -147,6 +150,8 @@
 			children = (
 				A8D09E072660317500956B68 /* HTTPHandler.h */,
 				A8D09E082660317500956B68 /* HTTPHandler.m */,
+				A845A9DD2667FACB00A57D7A /* CacheHandler.h */,
+				A845A9DE2667FACB00A57D7A /* CacheHandler.m */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				A8D09E132660337800956B68 /* ArticleCell.m in Sources */,
 				A8D09DFA266030AC00956B68 /* main.m in Sources */,
 				A8D09DEC266030AB00956B68 /* SceneDelegate.m in Sources */,
+				A845A9DF2667FACB00A57D7A /* CacheHandler.m in Sources */,
 				A8D09E1B2661B0B800956B68 /* UIImageView+Download.m in Sources */,
 				A8D09E092660317500956B68 /* HTTPHandler.m in Sources */,
 			);

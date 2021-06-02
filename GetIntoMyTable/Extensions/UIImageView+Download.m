@@ -10,7 +10,7 @@
 
 @implementation UIImageView (Download)
 
-- (void)downloadImageAtURL:(NSURL *)url {
+- (void)downloadImageAtURL:(NSURL *)url completion:(void(^)(UIImage *))callback {
     UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView new];
     [self.superview addSubview:activityIndicator];
     [activityIndicator centerPerfectlyInView:self.superview];
@@ -26,6 +26,7 @@
             if (data && !error && image) {
                 self.image = image;
             }
+            if (callback) callback(image);
         });
     }];
     [task resume];

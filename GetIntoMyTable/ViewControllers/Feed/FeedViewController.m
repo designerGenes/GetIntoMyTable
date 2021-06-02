@@ -26,7 +26,7 @@
 
 @implementation FeedViewController
 
-- (IBAction)tappedReload:(UIButton *)sender {
+- (IBAction)tappedReload:(UIButton *)sender {    
     [self.presenter reloadData];
 }
 

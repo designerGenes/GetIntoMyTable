@@ -22,14 +22,14 @@
     if (rawText.length < 1) {
         return nil;
     }
-    NSData *data = [rawText dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [rawText dataUsingEncoding:NSUTF16StringEncoding];
     NSError *error;
-    NSAttributedString *cleanText = [[NSAttributedString alloc] initWithData:data
+    NSAttributedString *cleaned = [[NSAttributedString alloc] initWithData:data
                                                                      options:@{
                                                                          NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType
                                                                      } documentAttributes:nil
                                                                        error:&error];
-    return cleanText;
+    return cleaned;
 }
 
 - (NSDateFormatter *)dateFormatter {
@@ -61,11 +61,6 @@
         self.summaryHTML = dictionary[@"summary_html"];
         self.rawDatePublished = dictionary[@"date_published"];
         self.rawDateModified = dictionary[@"date_modified"];
-//        NSDictionary *authorObject = dictionary[@"author"]; 
-//        if ([authorObject objectForKey:@"name"]) {
-//            NSData *name = [(NSString *)[authorObject objectForKey:@"name"] dataUsingEncoding:NSUTF8StringEncoding];
-//
-//        }
         self.authors = dictionary[@"authors"];
         self.tags = dictionary[@"tags"];
     }

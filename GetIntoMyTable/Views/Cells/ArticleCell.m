@@ -7,6 +7,7 @@
 
 #import "ArticleCell.h"
 #import "Article.h"
+#import "CacheHandler.h"
 
 @interface ArticleCell ()
 
@@ -52,7 +53,15 @@
     self.titleLabel.numberOfLines = isPrimary ? 1 : 2;
     self.bodyLabel.numberOfLines = 2;
     NSURL *imageURL = [NSURL URLWithString:article.featuredImageUrl];
-    [self.articleImageView downloadImageAtURL:imageURL];
+    UIImage *cachedImage = CacheHandler.sharedInstance.imageCache[imageURL];
+    if (cachedImage) {
+        self.articleImageView.image = cachedImage;
+    } else {
+        [self.articleImageView downloadImageAtURL:imageURL completion:^(UIImage * image) {
+            [CacheHandler.sharedInstance.imageCache setObject:image forKey:imageURL];
+        }];
+    }
+    
     self.articleImageView.alpha = 0.6;
     [self.contentView sendSubviewToBack:self.articleImageView];
 }
@@ -77,7 +86,7 @@
     [self.contentView sendSubviewToBack:self.articleImageView];
     [NSLayoutConstraint activateConstraints:@[
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:16],
-        [self.titleLabel.bottomAnchor constraintEqualToAnchor:self.contentView.centerYAnchor constant:-8],
+        [self.titleLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:16],
         [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8],
         [self.bodyLabel.leadingAnchor constraintEqualToAnchor:self.titleLabel.leadingAnchor],
         [self.bodyLabel.topAnchor constraintEqualToAnchor:self.centerYAnchor],

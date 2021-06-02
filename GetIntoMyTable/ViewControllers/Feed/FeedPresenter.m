@@ -19,6 +19,7 @@
 @property (nonatomic, strong) Feed *lastKnownFeed;
 @property (nonatomic, assign) BOOL lastScrollWasUp;
 
+
 @end
 
 @implementation FeedPresenter
