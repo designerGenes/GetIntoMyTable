@@ -40,8 +40,7 @@
      2. title underneath (rendering at most 2 lines of the title with the rest ellipsed if necessary
      
      */
-    self.titleLabel = [UILabel new];
-    self.bodyLabel = [UILabel new];
+    
     self.titleLabel.attributedText = [[Article cleanText:article.title]
                                       withFont:[UIFont boldSystemFontOfSize:26]];
     self.bodyLabel.attributedText = [[[[Article cleanText:article.summaryHTML]
@@ -64,6 +63,8 @@
 }
 
 - (void)setup {
+    self.titleLabel = [UILabel new];
+    self.bodyLabel = [UILabel new];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.articleImageView.backgroundColor = UIColor.systemGray4Color;
     self.clipsToBounds = YES;
