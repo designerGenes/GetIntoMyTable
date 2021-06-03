@@ -24,10 +24,11 @@
 - (UICollectionView *)feedCollectionView {
     if (!_feedCollectionView) {
         _feedCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.presenter.flowLayout];
+        [_feedCollectionView registerClass:ArticleCollectionViewCell.class forCellWithReuseIdentifier:NSStringFromClass(ArticleCollectionViewCell.class)];
         _feedCollectionView.dataSource = self.presenter;
         _feedCollectionView.delegate = self.presenter;
-        [_feedCollectionView registerClass:ArticleCollectionViewCell.class forCellWithReuseIdentifier:NSStringFromClass(ArticleCollectionViewCell.class)];
-        _feedCollectionView.backgroundColor = UIColor.whiteColor;
+        
+        _feedCollectionView.backgroundColor = UIColor.systemGray2Color;
     }
     
     return _feedCollectionView;

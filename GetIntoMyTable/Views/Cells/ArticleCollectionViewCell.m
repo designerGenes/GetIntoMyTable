@@ -8,23 +8,54 @@
 #import "ArticleCollectionViewCell.h"
 #import "Article.h"
 #import "CacheHandler.h"
+#import "CollectionViewFeedPresenter.h"
 
 @interface ArticleCollectionViewCell ()
 @property (strong, nonatomic) UIImageView *articleImageView;
 @property (strong, nonatomic) UILabel *bodyLabel;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) NSLayoutConstraint *bodyLabelHeightConstraint;
 @end
 
 @implementation ArticleCollectionViewCell
 
-- (void)configureWithArticle:(Article *)article isPrimary:(BOOL)isPrimary {
-    CGFloat titleFontSize = isPrimary ? 24 : 16;
-    self.titleLabel.numberOfLines = isPrimary ? 1 : 2;
-    self.bodyLabelHeightConstraint.constant = isPrimary ? 40 : 0;
-    self.titleLabel.attributedText = [[Article cleanText:article.title] withFont:[UIFont boldSystemFontOfSize:titleFontSize]];
-    if (isPrimary) {
-        self.bodyLabel.attributedText = [[Article cleanText:article.summary] withFont:[UIFont boldSystemFontOfSize:16]];
+- (UILabel *)bodyLabel {
+    if (!_bodyLabel) {
+        _bodyLabel = [UILabel new];
+        _bodyLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [self addSubview:_bodyLabel];
+    }
+    return _bodyLabel;
+}
+
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [UILabel new];
+        _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [self addSubview:_titleLabel];
+    }
+    return _titleLabel;
+}
+
+- (UIImageView *)articleImageView {
+    if (!_articleImageView) {
+        _articleImageView = [UIImageView new];
+        _articleImageView.contentMode = UIViewContentModeScaleAspectFill;
+        [self addSubview:_articleImageView];
+    }
+    
+    return _articleImageView;
+}
+
+- (void)configureWithArticle:(Article *)article section:(NSInteger)section presenter:(CollectionViewFeedPresenter *)presenter {
+    [self setupForSection:section withPresenter:presenter];
+    
+    CGFloat titleFontSize = section < 1 ? 24 : 16;
+    self.titleLabel.numberOfLines = section < 1 ? 1 : 2;
+    self.titleLabel.text = [Article cleanText:article.title].string; //[[Article cleanText:article.title] withFont:[UIFont boldSystemFontOfSize:titleFontSize]];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:titleFontSize];
+    self.bodyLabel.font = [UIFont systemFontOfSize:14];
+    if (section < 1) {
+        self.bodyLabel.text = [Article cleanText:article.summary].string; //[[Article cleanText:article.summary] withFont:[UIFont boldSystemFontOfSize:16]];
     }
     
     UIImage *cachedImage = [CacheHandler.sharedInstance.imageCache objectForKey:[NSURL URLWithString:article.featuredImageUrl]];
@@ -32,19 +63,10 @@
         self.articleImageView.image = cachedImage;
     } else {
         [self.articleImageView downloadImageAtURL:[NSURL URLWithString:article.featuredImageUrl] completion:^(UIImage *image) {
-            [CacheHandler.sharedInstance.imageCache setObject:image forKey:article.featuredImageUrl];
+            [CacheHandler.sharedInstance.imageCache setObject:image forKey:[NSURL URLWithString:article.featuredImageUrl]];
         }];
     }
     
-}
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setup];
-    }
-    return self;
 }
 
 -(void)prepareForReuse {
@@ -52,52 +74,48 @@
     self.articleImageView.image = nil;
     self.bodyLabel.text = nil;
     self.titleLabel.text = nil;
-}
-
-- (UIImageView *)articleImageView {
-    if (!_articleImageView) {
-        _articleImageView = [UIImageView new];
-        _articleImageView.contentMode = UIViewContentModeScaleAspectFill;
+    for (UIView *aView in @[self.articleImageView, self.titleLabel, self.bodyLabel]) {
+        [NSLayoutConstraint deactivateConstraints:aView.constraints];
     }
-    
-    return _articleImageView;
 }
 
-- (void)setup {
-    self.backgroundColor = UIColor.lightGrayColor;
-    self.bodyLabel = [UILabel new];
-    self.titleLabel = [UILabel new];
-    
-    self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.bodyLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.bodyLabel.numberOfLines = 2;
-    self.articleImageView.clipsToBounds = YES;
+- (void)setupForSection:(NSInteger)section withPresenter:(CollectionViewFeedPresenter *)presenter {
+    self.backgroundColor = UIColor.whiteColor;
     for (UIView *someView in @[self.articleImageView, self.bodyLabel, self.titleLabel]) {
-        [self.contentView addSubview:someView];
         someView.translatesAutoresizingMaskIntoConstraints = NO;
     }
     
+    self.bodyLabel.numberOfLines = 2;
+    self.articleImageView.clipsToBounds = YES;
+    
+    
+    CGFloat height = [presenter heightForCellInSection:section];
     CGFloat leftInset = 8;
     CGFloat rightInset = 8;
     CGFloat topInset = 16;
+    CGFloat imageHeight = height * 0.6667;
+    CGFloat titleLabelHeight = height * (section < 1 ? 0.1 : 0.3);
+    CGFloat bodyLabelHeight = section < 1 ? height * 0.12 : 0;
+    
+    
     
     [NSLayoutConstraint activateConstraints:@[
         [self.articleImageView.topAnchor constraintEqualToAnchor:self.topAnchor],
-        [self.articleImageView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor],
-        [self.articleImageView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor],
+        [self.articleImageView.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [self.articleImageView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+        [self.articleImageView.heightAnchor constraintEqualToConstant:imageHeight],
         
         [self.titleLabel.topAnchor constraintEqualToAnchor:self.articleImageView.bottomAnchor constant:topInset],
-        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:leftInset],
-        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:rightInset],
-        [self.bodyLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:topInset],
+        [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:leftInset],
+        [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-rightInset],
+        [self.titleLabel.heightAnchor constraintEqualToConstant:titleLabelHeight],
         
-        [self.bodyLabel.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:leftInset],
-        [self.bodyLabel.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:rightInset],
-        [self.bodyLabel.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:16],
+        [self.bodyLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:0],
+        [self.bodyLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:leftInset],
+        [self.bodyLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-rightInset],
+        [self.bodyLabel.heightAnchor constraintEqualToConstant:bodyLabelHeight],
     ]];
-    
-    self.bodyLabelHeightConstraint = [self.bodyLabel.heightAnchor constraintGreaterThanOrEqualToConstant:40];
-    [self.bodyLabelHeightConstraint setActive:YES];
+    [self updateConstraints];
 }
 
 @end

@@ -50,15 +50,29 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section < 1) {
-        let size = CGSizeMake(collectionView.bounds.size.width, 240);
+        let size = CGSizeMake(collectionView.bounds.size.width, [self heightForCellInSection:indexPath.section]);
         return size;
     }
     let nodesPerRow = AppDelegate.sharedInstance.deviceIsIpad ? 3 : 2;
     let flowLayout = (UICollectionViewFlowLayout *) collectionViewLayout;
-    let inset = flowLayout.sectionInset.left + flowLayout.sectionInset.right;
+    let inset = flowLayout.sectionInset.left + flowLayout.sectionInset.right + 16;
     let interItemSpace = (nodesPerRow - 1) * flowLayout.minimumInteritemSpacing;
-    let dimension = (collectionView.bounds.size.width - inset - interItemSpace) / nodesPerRow;
-    return CGSizeMake(dimension, dimension);
+    let width = (collectionView.bounds.size.width - inset - interItemSpace) / nodesPerRow;
+    return CGSizeMake(width, [self heightForCellInSection:indexPath.section]);
+}
+
+- (CGFloat)heightForCellInSection:(NSInteger)section {
+    if (section < 1) {
+        return 400;
+    }
+    return 250;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    if (section < 1) {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+    return UIEdgeInsetsMake(0, 8, 0, 8);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -91,7 +105,7 @@
     ArticleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     BOOL isPrimary = indexPath.section < 1;
     let rowIdx = isPrimary ? 0 : indexPath.row + 1;
-    [cell configureWithArticle:self.lastKnownFeed.items[rowIdx] isPrimary:isPrimary];
+    [cell configureWithArticle:self.lastKnownFeed.items[rowIdx] section:indexPath.section presenter:self];
     return cell;
 }
 
@@ -101,21 +115,21 @@
     return itemCount < 1 ? 0 : itemCount < 2 ? 1 : 2;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return section < 1 ? CGSizeZero : CGSizeMake(collectionView.bounds.size.width, 32);
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section > 0) {
         let headerView = [UIView new];
+        headerView.backgroundColor = UIColor.orangeColor; // TMP!
         let label = [UILabel new];
         [headerView addSubview:label];
         label.text = @"Previous Articles";
         label.font = [UIFont boldSystemFontOfSize:16];
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.textAlignment = NSTextAlignmentLeft;
-        [NSLayoutConstraint activateConstraints:@[
-            [label.topAnchor constraintEqualToAnchor:headerView.topAnchor constant:16],
-            [label.bottomAnchor constraintEqualToAnchor:headerView.bottomAnchor constant:-16],
-            [label.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:8],
-            [label.trailingAnchor constraintEqualToAnchor:headerView.trailingAnchor constant:-8],
-        ]];
+        [label centerPerfectlyInView:headerView];
         return headerView;
     } else {
         return [UIView new];

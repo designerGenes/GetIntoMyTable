@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 - (void)reloadData;
 - (void)viewDidBecomeReady:(id<FeedView>)view;
+- (CGFloat)heightForCellInSection:(NSInteger)section;
 
 @end
 
