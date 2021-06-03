@@ -7,13 +7,14 @@
 
 #ifndef FeedView_h
 #define FeedView_h
-@class Feed;
+@class Feed, Article;
 
 @protocol FeedView
 
 - (void)invalidateData:(Feed *)newData;
 - (void)setIsLoading:(BOOL)isLoading;
 - (void)navigateToBrowserWithURL:(NSURL *)url;
+- (void)navigateToViewArticle:(Article *)article;
 
 @end
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A83A1770266902C6003008B5 /* ContentHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A83A176F266902C6003008B5 /* ContentHTMLViewController.m */; };
 		A845A9CF2662DB3300A57D7A /* UIView+Constrain.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9CE2662DB3300A57D7A /* UIView+Constrain.m */; };
 		A845A9D22662F35E00A57D7A /* NSAttributedString+AddAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9D12662F35E00A57D7A /* NSAttributedString+AddAttributes.m */; };
 		A845A9D526637F5700A57D7A /* Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A845A9D426637F5700A57D7A /* Instructions.rtf */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A83A176E266902C6003008B5 /* ContentHTMLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentHTMLViewController.h; sourceTree = "<group>"; };
+		A83A176F266902C6003008B5 /* ContentHTMLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentHTMLViewController.m; sourceTree = "<group>"; };
 		A845A9CD2662DB3300A57D7A /* UIView+Constrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Constrain.h"; sourceTree = "<group>"; };
 		A845A9CE2662DB3300A57D7A /* UIView+Constrain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Constrain.m"; sourceTree = "<group>"; };
 		A845A9D02662F35E00A57D7A /* NSAttributedString+AddAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+AddAttributes.h"; sourceTree = "<group>"; };
@@ -84,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A83A17712669045E003008B5 /* ContentHTML */ = {
+			isa = PBXGroup;
+			children = (
+				A83A176E266902C6003008B5 /* ContentHTMLViewController.h */,
+				A83A176F266902C6003008B5 /* ContentHTMLViewController.m */,
+			);
+			path = ContentHTML;
+			sourceTree = "<group>";
+		};
 		A845A9D326637F4700A57D7A /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				A8D09E15266039E400956B68 /* Feed */,
+				A83A17712669045E003008B5 /* ContentHTML */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -301,6 +314,7 @@
 				A845A9CF2662DB3300A57D7A /* UIView+Constrain.m in Sources */,
 				A8D09DEF266030AB00956B68 /* FeedViewController.m in Sources */,
 				A845A9EF26687A2B00A57D7A /* FeedCollectionViewController.m in Sources */,
+				A83A1770266902C6003008B5 /* ContentHTMLViewController.m in Sources */,
 				A8D09DE9266030AB00956B68 /* AppDelegate.m in Sources */,
 				A8D09E0F266031F700956B68 /* Feed.m in Sources */,
 				A8D09E18266039FA00956B68 /* FeedPresenter.m in Sources */,

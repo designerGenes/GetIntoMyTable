@@ -63,6 +63,7 @@
         self.rawDateModified = dictionary[@"date_modified"];
         self.authors = dictionary[@"authors"];
         self.tags = dictionary[@"tags"];
+        self.contentHTML = [dictionary objectForKey:@"content_html"];
     }
     return self;
 }

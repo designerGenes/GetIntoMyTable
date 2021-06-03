@@ -10,6 +10,7 @@
 #import "Feed.h"
 #import "CollectionViewFeedPresenter.h"
 #import "ArticleCollectionViewCell.h"
+#import "ContentHTMLViewController.h"
 @import SafariServices;
 
 
@@ -57,6 +58,12 @@
 - (void)navigateToBrowserWithURL:(NSURL *)url {
     SFSafariViewController *webViewController = [[SFSafariViewController alloc] initWithURL:url];
     [self.navigationController presentViewController:webViewController animated:YES completion:nil];
+}
+
+- (void)navigateToViewArticle:(Article *)article {
+    let contentController = [ContentHTMLViewController new];
+    contentController.article = article;
+    [self.navigationController pushViewController:contentController animated:YES];
 }
 
 - (void)setIsLoading:(BOOL)isLoading {

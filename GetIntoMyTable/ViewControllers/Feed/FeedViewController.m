@@ -10,7 +10,8 @@
 #import "FeedPresenter.h"
 #import "Article.h"
 #import "Feed.h"
-#import "UIView+Constrain.h"
+#import "ContentHTMLViewController.h"
+
 
 @import SafariServices;
 
@@ -110,6 +111,10 @@
     SFSafariViewController *webViewController = [[SFSafariViewController alloc] initWithURL:url];
     
     [self.navigationController presentViewController:webViewController animated:YES completion:nil];
+}
+
+- (void)navigateToViewArticle:(Article *)article {
+    // unused
 }
 
 - (void)setIsLoading:(BOOL)isLoading {

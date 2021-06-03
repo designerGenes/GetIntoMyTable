@@ -93,8 +93,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     let adjustedIdx = indexPath.section < 1 ? 0 : indexPath.row + 1;
     Article *chosenArticle = [self.lastKnownFeed.items objectAtIndex:adjustedIdx];
-    NSURL *destinationURL = [NSURL URLWithString:chosenArticle.url];
-    [self.view navigateToBrowserWithURL:destinationURL];
+    [self.view navigateToViewArticle:chosenArticle];
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
 }
 
