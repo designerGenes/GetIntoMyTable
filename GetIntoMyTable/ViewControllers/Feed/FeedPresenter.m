@@ -17,7 +17,6 @@
 
 @property (nonatomic, weak) id<FeedView> view;
 @property (nonatomic, strong) HTTPHandler *httpHandler;
-@property (nonatomic, assign) BOOL lastScrollWasUp;
 
 
 @end

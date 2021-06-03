@@ -7,6 +7,7 @@
 
 #import "SceneDelegate.h"
 #import "FeedViewController.h"
+#import "FeedCollectionViewController.h"
 
 @interface SceneDelegate ()
 
@@ -19,8 +20,10 @@
     
     UIWindowScene *windowScene = (UIWindowScene *) scene;
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
-    FeedViewController *vc = [[FeedViewController alloc] init];
-    UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+//    FeedViewController *vc = [[FeedViewController alloc] init];
+    FeedCollectionViewController *cvVC = [FeedCollectionViewController new];
+    
+    UINavigationController *rootNavigationController = [[UINavigationController alloc] initWithRootViewController:cvVC];
     
     self.window.rootViewController = rootNavigationController;
     [self.window makeKeyAndVisible];

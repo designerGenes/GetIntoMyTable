@@ -23,10 +23,11 @@
 
 - (UICollectionView *)feedCollectionView {
     if (!_feedCollectionView) {
-        _feedCollectionView = [UICollectionView new];
+        _feedCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.presenter.flowLayout];
         _feedCollectionView.dataSource = self.presenter;
         _feedCollectionView.delegate = self.presenter;
         [_feedCollectionView registerClass:ArticleCollectionViewCell.class forCellWithReuseIdentifier:NSStringFromClass(ArticleCollectionViewCell.class)];
+        _feedCollectionView.backgroundColor = UIColor.whiteColor;
     }
     
     return _feedCollectionView;
@@ -41,7 +42,7 @@
     [super viewDidLoad];
     self.presenter = [CollectionViewFeedPresenter new];
     [self installConstraints];
-    self.navigationItem.title = @"Research & Inlights";
+    self.navigationItem.title = @"Research & Insights";
     [self.presenter viewDidBecomeReady:self];
 }
 
@@ -57,7 +58,7 @@
 }
 
 - (void)setIsLoading:(BOOL)isLoading {
-    self.feedCollectionView.hidden = isLoading;
+//    self.feedCollectionView.hidden = isLoading;
     self.feedCollectionView.userInteractionEnabled = !isLoading;
     if (isLoading) {
         self.activityIndicator = [UIActivityIndicatorView new];

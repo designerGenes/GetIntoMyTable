@@ -14,7 +14,6 @@
 - (void)invalidateData:(Feed *)newData;
 - (void)setIsLoading:(BOOL)isLoading;
 - (void)navigateToBrowserWithURL:(NSURL *)url;
-- (void)setTitleLabelText:(NSString *)titleLabelText; // TMP!
 
 @end
 

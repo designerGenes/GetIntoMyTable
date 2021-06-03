@@ -6,8 +6,14 @@
 //
 
 #import "FeedPresenter.h"
+@class Feed;
 
-@interface CollectionViewFeedPresenter : FeedPresenter <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource>
+@interface CollectionViewFeedPresenter : NSObject <UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, HTTPHandlerDelegate>
+
+@property (nonatomic, strong) Feed *lastKnownFeed;
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+- (void)reloadData;
+- (void)viewDidBecomeReady:(id<FeedView>)view;
 
 @end
 

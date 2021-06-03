@@ -13,7 +13,7 @@
 - (void)downloadImageAtURL:(NSURL *)url completion:(void(^)(UIImage *))callback {
     UIActivityIndicatorView *activityIndicator = [UIActivityIndicatorView new];
     [self.superview addSubview:activityIndicator];
-    [activityIndicator centerPerfectlyInView:self.superview];
+//    [activityIndicator centerPerfectlyInView:self.superview];
     [activityIndicator startAnimating];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
