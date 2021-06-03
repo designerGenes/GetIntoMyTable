@@ -25,6 +25,7 @@
     if (!_feedCollectionView) {
         _feedCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:self.presenter.flowLayout];
         [_feedCollectionView registerClass:ArticleCollectionViewCell.class forCellWithReuseIdentifier:NSStringFromClass(ArticleCollectionViewCell.class)];
+        [_feedCollectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass(UICollectionReusableView.class)];
         _feedCollectionView.dataSource = self.presenter;
         _feedCollectionView.delegate = self.presenter;
         
@@ -43,6 +44,7 @@
     [super viewDidLoad];
     self.presenter = [CollectionViewFeedPresenter new];
     [self installConstraints];
+    self.view.backgroundColor = UIColor.whiteColor;
     self.navigationItem.title = @"Research & Insights";
     [self.presenter viewDidBecomeReady:self];
 }
@@ -54,13 +56,11 @@
 
 - (void)navigateToBrowserWithURL:(NSURL *)url {
     SFSafariViewController *webViewController = [[SFSafariViewController alloc] initWithURL:url];
-    
     [self.navigationController presentViewController:webViewController animated:YES completion:nil];
 }
 
 - (void)setIsLoading:(BOOL)isLoading {
-//    self.feedCollectionView.hidden = isLoading;
-    self.feedCollectionView.userInteractionEnabled = !isLoading;
+    self.feedCollectionView.hidden = isLoading;
     if (isLoading) {
         self.activityIndicator = [UIActivityIndicatorView new];
         self.activityIndicator.color = UIColor.blackColor;
@@ -69,18 +69,12 @@
     } else {
         __weak typeof(self) weakSelf = self;
         dispatch_after(2, dispatch_get_main_queue(), ^{
-            weakSelf.feedCollectionView.alpha = 1;
             weakSelf.feedCollectionView.userInteractionEnabled = YES;
             [weakSelf.activityIndicator stopAnimating];
             [weakSelf.activityIndicator removeFromSuperview];
         });
     }
 }
-
-- (void)setTitleLabelText:(NSString *)titleLabelText {
-    //
-}
-
 
 
 - (void)viewDidLayoutSubviews {

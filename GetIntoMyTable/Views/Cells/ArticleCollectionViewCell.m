@@ -62,21 +62,19 @@
     if (cachedImage) {
         self.articleImageView.image = cachedImage;
     } else {
-        [self.articleImageView downloadImageAtURL:[NSURL URLWithString:article.featuredImageUrl] completion:^(UIImage *image) {
-            [CacheHandler.sharedInstance.imageCache setObject:image forKey:[NSURL URLWithString:article.featuredImageUrl]];
-        }];
+        [self.articleImageView downloadImageAtURL:[NSURL URLWithString:article.featuredImageUrl] completion:nil];
     }
     
 }
 
 -(void)prepareForReuse {
     [super prepareForReuse];
-    self.articleImageView.image = nil;
-    self.bodyLabel.text = nil;
-    self.titleLabel.text = nil;
     for (UIView *aView in @[self.articleImageView, self.titleLabel, self.bodyLabel]) {
-        [NSLayoutConstraint deactivateConstraints:aView.constraints];
+        [aView removeFromSuperview];
     }
+    self.articleImageView = nil;
+    self.titleLabel = nil;
+    self.bodyLabel = nil;
 }
 
 - (void)setupForSection:(NSInteger)section withPresenter:(CollectionViewFeedPresenter *)presenter {
@@ -87,16 +85,13 @@
     
     self.bodyLabel.numberOfLines = 2;
     self.articleImageView.clipsToBounds = YES;
-    
-    
     CGFloat height = [presenter heightForCellInSection:section];
     CGFloat leftInset = 8;
     CGFloat rightInset = 8;
-    CGFloat topInset = 16;
     CGFloat imageHeight = height * 0.6667;
     CGFloat titleLabelHeight = height * (section < 1 ? 0.1 : 0.3);
     CGFloat bodyLabelHeight = section < 1 ? height * 0.12 : 0;
-    
+    CGFloat topLabelInset = section < 1 ? 8 : 4;
     
     
     [NSLayoutConstraint activateConstraints:@[
@@ -105,17 +100,17 @@
         [self.articleImageView.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
         [self.articleImageView.heightAnchor constraintEqualToConstant:imageHeight],
         
-        [self.titleLabel.topAnchor constraintEqualToAnchor:self.articleImageView.bottomAnchor constant:topInset],
+        [self.titleLabel.topAnchor constraintEqualToAnchor:self.articleImageView.bottomAnchor constant:topLabelInset],
         [self.titleLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:leftInset],
         [self.titleLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-rightInset],
         [self.titleLabel.heightAnchor constraintEqualToConstant:titleLabelHeight],
         
-        [self.bodyLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor constant:0],
+        [self.bodyLabel.topAnchor constraintEqualToAnchor:self.titleLabel.bottomAnchor],
         [self.bodyLabel.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:leftInset],
         [self.bodyLabel.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-rightInset],
         [self.bodyLabel.heightAnchor constraintEqualToConstant:bodyLabelHeight],
     ]];
-    [self updateConstraints];
+
 }
 
 @end

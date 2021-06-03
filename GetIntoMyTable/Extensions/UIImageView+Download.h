@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImageView (Download)
-- (void)downloadImageAtURL:(NSURL *)url completion:(void(^)(UIImage *))callback;
+- (void)downloadImageAtURL:(NSURL *)url completion:(void(^ _Nullable)(UIImage *))callback;
 @end
 
 NS_ASSUME_NONNULL_END

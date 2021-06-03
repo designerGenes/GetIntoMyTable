@@ -96,11 +96,6 @@
 }
 
 #pragma MARK - FeedView
-- (void)setTitleLabelText:(NSString *)titleLabelText {
-    self.feedTitleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightRegular];
-    self.feedTitleLabel.text = titleLabelText; // TMP!
-}
-
 - (void)invalidateData:(Feed *)newData {
     [self.feedTable reloadData];
     

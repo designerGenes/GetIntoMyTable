@@ -8,7 +8,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B7A2DC87-7B45-4589-A63B-7AEB9BE61303"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GetIntoMyTable/Extensions/UIView+Constrain.m"
@@ -17,22 +17,6 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "-coverSelfEntirelyWith:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BCF02F5E-A07B-4827-8E53-24F3793B4888"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GetIntoMyTable/Extensions/UIView+Constrain.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-centerPerfectlyInView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

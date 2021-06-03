@@ -14,8 +14,10 @@
 
 
 @interface CollectionViewFeedPresenter ()
+
 @property (nonatomic, weak) id<FeedView> view;
 @property (nonatomic, strong) HTTPHandler *httpHandler;
+
 @end
 
 @implementation CollectionViewFeedPresenter
@@ -31,7 +33,6 @@
 #pragma mark - UICollectionViewDelegate/DataSource/FlowLayout methods
 - (UICollectionViewFlowLayout *)flowLayout {
     let flowLayout = [UICollectionViewFlowLayout new];
-    flowLayout.estimatedItemSize = CGSizeZero;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     return flowLayout;
 }
@@ -50,8 +51,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section < 1) {
-        let size = CGSizeMake(collectionView.bounds.size.width, [self heightForCellInSection:indexPath.section]);
-        return size;
+        return CGSizeMake(collectionView.bounds.size.width, [self heightForCellInSection:indexPath.section]);
     }
     let nodesPerRow = AppDelegate.sharedInstance.deviceIsIpad ? 3 : 2;
     let flowLayout = (UICollectionViewFlowLayout *) collectionViewLayout;
@@ -63,16 +63,14 @@
 
 - (CGFloat)heightForCellInSection:(NSInteger)section {
     if (section < 1) {
-        return 400;
+        return 300;
     }
-    return 250;
+    return 220;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    if (section < 1) {
-        return UIEdgeInsetsMake(0, 0, 0, 0);
-    }
-    return UIEdgeInsetsMake(0, 8, 0, 8);
+    CGFloat lateralInset = section < 1 ? 0 : 8;
+    return UIEdgeInsetsMake(0, lateralInset, 0, lateralInset);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
@@ -119,22 +117,33 @@
     return section < 1 ? CGSizeZero : CGSizeMake(collectionView.bounds.size.width, 32);
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section > 0) {
-        let headerView = [UIView new];
-        headerView.backgroundColor = UIColor.orangeColor; // TMP!
-        let label = [UILabel new];
-        [headerView addSubview:label];
-        label.text = @"Previous Articles";
-        label.font = [UIFont boldSystemFontOfSize:16];
-        label.translatesAutoresizingMaskIntoConstraints = false;
-        label.textAlignment = NSTextAlignmentLeft;
-        [label centerPerfectlyInView:headerView];
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    let headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass(UICollectionReusableView.class) forIndexPath:indexPath];
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader] && indexPath.section > 0) {
+        
+        headerView.backgroundColor = UIColor.whiteColor;
+        let divider = [UIView new];
+        let headerLabel = [UILabel new];
+        [headerView addSubview:divider];
+        [headerView addSubview:headerLabel];
+        headerLabel.text = @"Previous Articles";
+        headerLabel.font = [UIFont systemFontOfSize:16];
+        headerLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        divider.backgroundColor = [UIColor.lightGrayColor colorWithAlphaComponent:0.6];
+        divider.translatesAutoresizingMaskIntoConstraints = NO;
+        [NSLayoutConstraint activateConstraints:@[
+            [headerLabel.centerYAnchor constraintEqualToAnchor:headerView.centerYAnchor constant:2],
+            [headerLabel.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor constant:4],
+            [headerLabel.trailingAnchor constraintEqualToAnchor:headerView.trailingAnchor constant:-4],
+            [divider.topAnchor constraintEqualToAnchor:headerView.topAnchor],
+            [divider.leadingAnchor constraintEqualToAnchor:headerView.leadingAnchor],
+            [divider.trailingAnchor constraintEqualToAnchor:headerView.trailingAnchor],
+            [divider.heightAnchor constraintEqualToConstant:2],
+        ]];
         return headerView;
-    } else {
-        return [UIView new];
     }
     
+    return headerView;
 }
 
 #pragma mark - HTTPHandlerDelegate methods
