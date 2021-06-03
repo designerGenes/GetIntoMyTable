@@ -11,12 +11,12 @@
 #import "ArticleCell.h"
 #import "Article.h"
 #import "AppDelegate.h"
+#import "FeedView.h"
 
 @interface FeedPresenter () 
 
 @property (nonatomic, weak) id<FeedView> view;
 @property (nonatomic, strong) HTTPHandler *httpHandler;
-@property (nonatomic, strong) Feed *lastKnownFeed;
 @property (nonatomic, assign) BOOL lastScrollWasUp;
 
 

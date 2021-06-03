@@ -8,20 +8,13 @@
 #import <Foundation/Foundation.h>
 #import "HTTPHandler.h"
 #import <UIKit/UIKit.h>
+#import "FeedView.h"
 
 @class Feed;
 
-@protocol FeedView
-
-- (void)invalidateData:(Feed *)newData;
-- (void)setIsLoading:(BOOL)isLoading;
-- (void)navigateToBrowserWithURL:(NSURL *)url;
-- (void)setTitleLabelText:(NSString *)titleLabelText; // TMP!
-
-@end
-
 @interface FeedPresenter : NSObject <HTTPHandlerDelegate, UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) Feed *lastKnownFeed;
 - (void)reloadData;
 - (void)viewDidBecomeReady:(id<FeedView>)view;
 

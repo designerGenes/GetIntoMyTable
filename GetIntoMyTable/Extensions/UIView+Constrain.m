@@ -33,4 +33,15 @@
     ]];
 }
 
+- (void)coverSelfEntirelyWith:(UIView *)coveringSubview  {
+    [self addSubview:coveringSubview];
+    coveringSubview.translatesAutoresizingMaskIntoConstraints = NO;
+    [NSLayoutConstraint activateConstraints:@[
+        [coveringSubview.topAnchor constraintEqualToAnchor:self.topAnchor],
+        [coveringSubview.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
+        [coveringSubview.leadingAnchor constraintEqualToAnchor:self.leadingAnchor],
+        [coveringSubview.trailingAnchor constraintEqualToAnchor:self.trailingAnchor],
+    ]];
+}
+
 @end

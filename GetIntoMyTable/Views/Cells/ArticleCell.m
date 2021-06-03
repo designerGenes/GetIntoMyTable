@@ -11,7 +11,7 @@
 
 @interface ArticleCell ()
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *bodyLabel;
 @property (strong, nonatomic) UIImageView *articleImageView;
 

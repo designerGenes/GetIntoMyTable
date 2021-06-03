@@ -22,6 +22,7 @@
 @property (strong, nonatomic)  UIButton *reloadButton;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UITableView *feedTable;
+
 @end
 
 @implementation FeedViewController

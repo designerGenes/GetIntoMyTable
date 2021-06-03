@@ -12,6 +12,9 @@
 		A845A9D526637F5700A57D7A /* Instructions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A845A9D426637F5700A57D7A /* Instructions.rtf */; };
 		A845A9DA266385E700A57D7A /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9D9266385E700A57D7A /* NSString+Extension.m */; };
 		A845A9DF2667FACB00A57D7A /* CacheHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9DE2667FACB00A57D7A /* CacheHandler.m */; };
+		A845A9E826682FF300A57D7A /* ArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9E726682FF300A57D7A /* ArticleCollectionViewCell.m */; };
+		A845A9EB266871FE00A57D7A /* CollectionViewFeedPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9EA266871FE00A57D7A /* CollectionViewFeedPresenter.m */; };
+		A845A9EF26687A2B00A57D7A /* FeedCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A845A9EE26687A2B00A57D7A /* FeedCollectionViewController.m */; };
 		A8D09DE9266030AB00956B68 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DE8266030AB00956B68 /* AppDelegate.m */; };
 		A8D09DEC266030AB00956B68 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DEB266030AB00956B68 /* SceneDelegate.m */; };
 		A8D09DEF266030AB00956B68 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D09DEE266030AB00956B68 /* FeedViewController.m */; };
@@ -38,6 +41,13 @@
 		A845A9DC2664030800A57D7A /* GetIntoMyTable-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GetIntoMyTable-Prefix.pch"; sourceTree = "<group>"; };
 		A845A9DD2667FACB00A57D7A /* CacheHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheHandler.h; sourceTree = "<group>"; };
 		A845A9DE2667FACB00A57D7A /* CacheHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheHandler.m; sourceTree = "<group>"; };
+		A845A9E626682FF300A57D7A /* ArticleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArticleCollectionViewCell.h; sourceTree = "<group>"; };
+		A845A9E726682FF300A57D7A /* ArticleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArticleCollectionViewCell.m; sourceTree = "<group>"; };
+		A845A9E9266871FE00A57D7A /* CollectionViewFeedPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFeedPresenter.h; sourceTree = "<group>"; };
+		A845A9EA266871FE00A57D7A /* CollectionViewFeedPresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFeedPresenter.m; sourceTree = "<group>"; };
+		A845A9EC2668742600A57D7A /* FeedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedView.h; sourceTree = "<group>"; };
+		A845A9ED26687A2B00A57D7A /* FeedCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedCollectionViewController.h; sourceTree = "<group>"; };
+		A845A9EE26687A2B00A57D7A /* FeedCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedCollectionViewController.m; sourceTree = "<group>"; };
 		A8D09DE4266030AB00956B68 /* GetIntoMyTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetIntoMyTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8D09DE7266030AB00956B68 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A8D09DE8266030AB00956B68 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -169,6 +179,8 @@
 			children = (
 				A8D09E102660337800956B68 /* ArticleCell.h */,
 				A8D09E112660337800956B68 /* ArticleCell.m */,
+				A845A9E626682FF300A57D7A /* ArticleCollectionViewCell.h */,
+				A845A9E726682FF300A57D7A /* ArticleCollectionViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -187,13 +199,13 @@
 		A8D09E062660314A00956B68 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A845A9D02662F35E00A57D7A /* NSAttributedString+AddAttributes.h */,
+				A845A9D12662F35E00A57D7A /* NSAttributedString+AddAttributes.m */,
+				A845A9D8266385E700A57D7A /* NSString+Extension.h */,
+				A845A9D9266385E700A57D7A /* NSString+Extension.m */,
 				A8D09E192661B0B800956B68 /* UIImageView+Download.h */,
 				A8D09E1A2661B0B800956B68 /* UIImageView+Download.m */,
 				A845A9CD2662DB3300A57D7A /* UIView+Constrain.h */,
-				A845A9D02662F35E00A57D7A /* NSAttributedString+AddAttributes.h */,
-				A845A9D8266385E700A57D7A /* NSString+Extension.h */,
-				A845A9D9266385E700A57D7A /* NSString+Extension.m */,
-				A845A9D12662F35E00A57D7A /* NSAttributedString+AddAttributes.m */,
 				A845A9CE2662DB3300A57D7A /* UIView+Constrain.m */,
 			);
 			path = Extensions;
@@ -202,8 +214,13 @@
 		A8D09E15266039E400956B68 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				A845A9E9266871FE00A57D7A /* CollectionViewFeedPresenter.h */,
+				A845A9EA266871FE00A57D7A /* CollectionViewFeedPresenter.m */,
+				A845A9ED26687A2B00A57D7A /* FeedCollectionViewController.h */,
+				A845A9EE26687A2B00A57D7A /* FeedCollectionViewController.m */,
 				A8D09E16266039FA00956B68 /* FeedPresenter.h */,
 				A8D09E17266039FA00956B68 /* FeedPresenter.m */,
+				A845A9EC2668742600A57D7A /* FeedView.h */,
 				A8D09DED266030AB00956B68 /* FeedViewController.h */,
 				A8D09DEE266030AB00956B68 /* FeedViewController.m */,
 			);
@@ -280,8 +297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A845A9D22662F35E00A57D7A /* NSAttributedString+AddAttributes.m in Sources */,
+				A845A9E826682FF300A57D7A /* ArticleCollectionViewCell.m in Sources */,
 				A845A9CF2662DB3300A57D7A /* UIView+Constrain.m in Sources */,
 				A8D09DEF266030AB00956B68 /* FeedViewController.m in Sources */,
+				A845A9EF26687A2B00A57D7A /* FeedCollectionViewController.m in Sources */,
 				A8D09DE9266030AB00956B68 /* AppDelegate.m in Sources */,
 				A8D09E0F266031F700956B68 /* Feed.m in Sources */,
 				A8D09E18266039FA00956B68 /* FeedPresenter.m in Sources */,
@@ -290,6 +309,7 @@
 				A8D09E132660337800956B68 /* ArticleCell.m in Sources */,
 				A8D09DFA266030AC00956B68 /* main.m in Sources */,
 				A8D09DEC266030AB00956B68 /* SceneDelegate.m in Sources */,
+				A845A9EB266871FE00A57D7A /* CollectionViewFeedPresenter.m in Sources */,
 				A845A9DF2667FACB00A57D7A /* CacheHandler.m in Sources */,
 				A8D09E1B2661B0B800956B68 /* UIImageView+Download.m in Sources */,
 				A8D09E092660317500956B68 /* HTTPHandler.m in Sources */,
